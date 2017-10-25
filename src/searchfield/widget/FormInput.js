@@ -2,8 +2,11 @@ define([
     "dojo/_base/declare",
     "mxui/widget/_WidgetBase",
     "dojo/_base/lang",
-    "dojo/_base/kernel"
-], function (declare, _WidgetBase, lang, kernel) {
+    "dojo/_base/kernel",
+    "dojo/dom-class",
+    "dojo/has",
+    "dojo/sniff"
+], function (declare, _WidgetBase, lang, kernel, domClass, has) {
     'use strict';
 
     return declare("searchfield.widget.FormInput", [ _WidgetBase ], {
@@ -20,10 +23,10 @@ define([
         this.inputType = this.node.type;
         this.connect(this.node, "onfocus", this.hideExample);
         this.connect(this.node, "onblur", this.showExample);
-        mendix.dom.addClass(this.node, this.baseClass);
-        if (mx.isIE) {
+        domClass.add(this.node, this.baseClass);
+        if (has("ie")) {
             this.ieParent = this.node.parentNode;
-            this.ieChild = mendix.dom.input({
+            this.ieChild = dom.create("input", {
                 type: "text",
                 "class": mendix.dom.getClass(this.node)
             });
@@ -31,7 +34,7 @@ define([
             this.connect(this.ieChild, "onblur", this.showExample)
         }
         this.showExample();
-        this.loaded()
+        // this.loaded()
     },
     setExample: function(example) {
         this.text = example;
@@ -45,14 +48,14 @@ define([
         if (this.isEmpty()) {
             this.hasExample = true;
             if (this.inputType == "password")
-                if (mx.isIE) {
+                if (has("ie")) {
                     this.ieParent.replaceChild(this.ieChild, this.node);
                     this.ieChild.value = this.text;
-                    mendix.dom.addClass(this.ieChild, this.exampleCss);
+                    domClass.add(this.ieChild, this.exampleCss);
                     return
                 } else this.node.type = "text";
             this.node.value = this.text;
-            mendix.dom.addClass(this.node, this.exampleCss)
+            domClass.add(this.node, this.exampleCss)
         }
     },
     hideExample: function() {
@@ -60,7 +63,7 @@ define([
         if (this.hasExample) {
             this.hasExample = false;
             if (this.inputType == "password")
-                if (mx.isIE) {
+                if (has("ie")) {
                     this.ieParent.replaceChild(this.node, this.ieChild);
                     var a = this.node;
                     setTimeout(function() {
@@ -70,7 +73,7 @@ define([
                     }, 0)
                 } else this.node.type = "password";
             this.node.value = "";
-            mendix.dom.removeClass(this.node, this.exampleCss)
+            domClass.remove(this.node, this.exampleCss)
         }
     },
     getValue: function() {
