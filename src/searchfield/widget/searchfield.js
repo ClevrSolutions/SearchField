@@ -1,10 +1,17 @@
-dojo.provide("searchfield.widget.searchfield");
-dojo.require("searchfield.widget.FormInput");
-mendix.widget.declare("searchfield.widget.searchfield", {
-  addons:[dijit._Templated],
+define([
+  "dojo/_base/declare",
+  "mxui/widget/_WidgetBase",
+  "dijit/_TemplatedMixin",
+  "dojo/_base/lang",
+  "dojo/_base/kernel"
+], function (declare, _WidgetBase, _TemplatedMixin, lang, kernel) {
+  'use strict';
+
+  return declare("searchfield.widget.searchfield", [ _WidgetBase, _TemplatedMixin ], {
+  // addons:[dijit._Templated],
   inputargs:{},
   baseClass:"",
-  templatePath:dojo.moduleUrl("searchfield.widget","templates/searchfield.html"),
+  templateString: noMicroflowTemplate,
   loginConnects:null,
   searchInput:null,
   searchParam:null,
@@ -73,4 +80,7 @@ mendix.widget.declare("searchfield.widget.searchfield", {
     logger.debug(this.id+".uninitialize");
   }
 
-});
+    });
+  });
+
+require([ "searchfield/widget/searchfield" ]);
