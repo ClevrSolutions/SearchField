@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="searchfield.widget.searchfield" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+  <name>SearchField</name>
+  <description>Field for the advanced search</description>
+  <icon>
+	iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACnUlEQVR42mNkwAFOHDvqysHJlfH5
+	y2cGZmYWNkYGhosfPnzo9PTy+oysjhGH5qYnH35kM3FyfeDnFXjOyszE8OPbJ5lfH19/XLxgQcLK
+	VavO4zTg0IH9BdeefSn5zS24x8ne6gs3E+NfZkaG//8ZGf6+ePnS5NTO9fKNdbWOr9+8uY9hwI5t
+	W0XZeEUObTj7bFdMrP9PLiZGVua/DP+ZgHIsTAyMrOwM/x7fu+PbV192dO269YkYBpw6cSzg2rOf
+	vU+YpFtMTVT5mP8wsHMyMbCwMjMws7EwMHECDfj987fupPp8pVkzpnsAtbxBMeD4scOxV579L/0u
+	qt1pZyhkycnAwMwNtJ4FqIqJieE/MzPD378/GWTrynMkZkybGgvUchvVBcePuj78wDj9GatKpZ2Z
+	qCkfMwMPFxPDP6gBDECX/Pn14ZdWZUWO4OzZs0OBWh6gGLBh/To2EXGpk3e/i61TM1B8IsPLYAV0
+	xU+g/xmYmBn+AdkMl89d9c0vyDhw+PCRHCD3K0YstDQ1ehpbO00T1DRtl5FkZxdkYFBiZmD4x8rA
+	wP761Xvbjo5mxsmTJuX8/fv3ENZonDp1tqe6muK2T9++vZfV1DojISbyj+n3H8lbV6+Lz5k9497a
+	tWvbf/z4sQ2o9C+GAUuWrLLU0dHdffjwnm91tbWV0lJS7LLy8iYf3r//c+vWrQtv373bBVR2F4j/
+	YySkRYuWaMnKqu/5/fu9ZHZ2dt3t27fbYLbgA2ADpkyZLykrq7RHTo5fq7W1ed2aNWszgMKvCWkG
+	G9Dfv8hGWFis3cBA1mbr1o3XKyur4oDiZ4jRDDZg46Z9ZbIyou0vXjz8GR+fmPH69etFxGoGG2Bp
+	aS4lIiIa8fz5C84zZ870A8W+kWIAAApaASC9GF9LAAAAAElFTkSuQmCC
+  </icon>
+  <properties>
+   <property key="placeholder" type="translatableString">
+     <caption>Input placeholder</caption>
+	   <category>General</category>
+     <description>Placeholder text to show in search field</description>
+   </property>
+   <property key="progressmessage" type="translatableString">
+     <caption>Progress message</caption>
+     <category>General</category>
+     <description>Message to show while search is performed</description>
+   </property>
+	 <property key="executemicroflow" type="string" required="true">
+      <caption>On change microflow name</caption>
+      <category>General</category>
+      <description>Name of the microflow to trigger if someone enter a new search</description>
+   </property>
+  </properties>
+</widget>
