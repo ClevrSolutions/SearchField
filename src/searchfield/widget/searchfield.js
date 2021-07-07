@@ -1,10 +1,18 @@
-dojo.provide("searchfield.widget.searchfield");
-dojo.require("searchfield.widget.FormInput");
-mendix.widget.declare("searchfield.widget.searchfield", {
-  addons:[dijit._Templated],
-  inputargs:{},
+define([
+  "dojo/_base/declare",
+  "mxui/widget/_WidgetBase",
+  "dijit/_TemplatedMixin",
+  "dojo/_base/lang",
+  "dojo/text!searchfield/widget/templates/searchfield.html",
+  "searchfield/widget/FormInput"
+], function (declare, _WidgetBase, _TemplatedMixin, lang, widgetTemplate, FormInput) {
+  'use strict';
+  try {
+  return declare("searchfield.widget.searchfield", [ _WidgetBase, _TemplatedMixin ], {
+  // addons:[dijit._Templated],
+  // inputargs:{},
   baseClass:"",
-  templatePath:dojo.moduleUrl("searchfield.widget","templates/searchfield.html"),
+  templateString: widgetTemplate,
   loginConnects:null,
   searchInput:null,
   searchParam:null,
@@ -12,12 +20,12 @@ mendix.widget.declare("searchfield.widget.searchfield", {
   postCreate : function() {
     logger.debug(this.id+ ".postCreate");
 
-    this.searchInput=new searchfield.widget.FormInput({node:this.searchFieldInput,text:this.placeholder});
+    this.searchInput=new FormInput({node:this.searchFieldInput,text:this.placeholder});
     this.connect(this.searchFieldInput, "onkeyup","onKeyUp");
 
     mx.addOnLoad(dojo.hitch(this, this.resetExample));
 
-    this.loaded();
+    // this.loaded();
   },
 
   resetExample:function() {
@@ -40,7 +48,7 @@ mendix.widget.declare("searchfield.widget.searchfield", {
       entity : "AdvancedSearch.SearchParams",
       callback : function(obj) {
         obj.set("Text",inputText);
-        var guid = obj.getGUID();
+        var guid = obj.getGuid();
 
         logger.debug(this.id+".search");
 
@@ -73,4 +81,8 @@ mendix.widget.declare("searchfield.widget.searchfield", {
     logger.debug(this.id+".uninitialize");
   }
 
-});
+    });
+  } catch(e) {console.log(e)}
+  });
+
+require([ "searchfield/widget/searchfield" ]);
